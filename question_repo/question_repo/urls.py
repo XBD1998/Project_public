@@ -26,6 +26,6 @@ urlpatterns = [
     url(r'^uc/', include('apps.usercenter.urls', namespace="uc")),
     url(r'^', include('apps.repo.urls', namespace="repo")),
     url(r'^base/$', views.base),
-    url(r'^apis/', include('apps.apis.urls', namespace="apis"))
+    # url(r'^apis/', include('apps.apis.urls', namespace="apis"))
 
 ]

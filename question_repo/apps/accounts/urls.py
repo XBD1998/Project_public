@@ -9,10 +9,10 @@ urlpatterns = [
     # ×¢²á
     url(r'register/$', views.Register.as_view(), name="register"),
     # µÇÂ¼
-    url(r'^login/$', TemplateView.as_view(template_name='login.html'), name="login"),
+    url(r'^login/$', views.Login.as_view(), name='login'),
     # url(r'login/$', views.test, name="login"),
     # ÍË³ö
-    url(r'logout/$', views.test, name="logout"),
+    url(r'logout/$', views.logout, name="logout"),
     # Íü¼ÇÃÜÂë
     url(r'password/forget/$', views.test, name="password_forget"),
     # ÖØÖÃÃÜÂë

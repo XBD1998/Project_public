@@ -252,3 +252,8 @@ CACHES = {
         },
     },
 }
+
+#FontPath => 指定字体文件所在目录
+FontPath = os.path.join(BASE_DIR, 'static/fonts/')
+
+

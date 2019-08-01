@@ -15,7 +15,7 @@ def send_sms(mobile,captcha):
         "sid": "37fb1682861e30a7ba2cf61fc2d6b81b",
         "token": "cce47666fde10ae9aea45348468c3992",
         "appid": "692bd3c77e344b8882c55a3374d29ea9",
-        "templateid": "488201",
+        "templateid": "489989",
         "param": str(captcha),
         "mobile": mobile,
 
