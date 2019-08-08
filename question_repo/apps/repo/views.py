@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.views.generic import View
 from django.shortcuts import HttpResponse
-from django.contrib.auth.decorators import  login_required
+from django.contrib.auth.decorators import login_required
+from .models import Category, Questions
 # Create your views here.
 def test(request):
     return HttpResponse("题库视图")
@@ -12,3 +14,11 @@ def test(request):
 @login_required
 def index(request):
     return render(request, "accounts/index.html")
+
+
+class QuestionsList(View):
+    def get(self, request):
+        category = Category.objects.all().values("id", "name")
+        grades = Questions.DIF_CHOICES
+        kwgs = {"category":category, "grades":grades}
+        return render(request, 'questions.html', kwgs)
