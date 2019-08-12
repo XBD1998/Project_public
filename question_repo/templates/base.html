@@ -48,15 +48,15 @@
                       </a>
                     </li>
                     <li class="">
-                        <a class="" href="http://127.0.0.1:8000/question/">
+                        <a class="" href="http://127.0.0.1:8000/questions/">
                       <span> 校招题 </span>
                     </a>
                     </li>
                   </ul>
                   <ul class="nav pull-right top-menu">
                       <li>
-                          <form action="/question/">
-                             <input type="text" class="form-control search" placeholder="Search" name="search" id="search">
+                          <form action="{% url 'repo:questions' %}">
+                             <input type="text" class="form-control search" placeholder="Search" name="search" id="search" value="{{ search_key }}">
                           </form>
                       </li>
                       <!-- user login dropdown start-->

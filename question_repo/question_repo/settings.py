@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'app01',
     'apps.route_base',
     'apps.route_resolve',
-    'apps.repo',
+    'apps.repo.apps.RepoConfig',
     'apps.accounts',
     'apps.usercenter',
     'apps.apis',
