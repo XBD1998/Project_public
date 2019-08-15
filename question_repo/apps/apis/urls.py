@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^answer/(?P<id>\d+)/$', views.AnswerView.as_view(), name="answer"),
     url(r'^other_answer/(?P<id>\d+)/$', views.OtherAnswerView.as_view(), name="other_answer"),
     # url(r'^answer/collection/(?P<id>\d+)/$', views.AnswerCollectionView.as_view(), name='answer_collection'),
+    url(r'^change_avator/$', views.ChangeAvator.as_view(), name='change_avator'),
 ]

@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'apps.usercenter',
     'apps.apis',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.repo.context_processors.repo_data',
             ],
         },
     },
@@ -351,3 +353,24 @@ CKEDITOR_CONFIGS = {
             ]),
     }
 }
+
+#配置缩略图（easy_thumbnails暂时生成不出来）
+THUMBNAIL_ALIASES = {
+    #target:'accounts.User' => 给哪个app/Model/Field配置缩略图
+    '':{
+        #avatar:表示将来引用的名字
+        #crop:False => 不裁剪、同比例缩小
+        'avatar':{'size':(50,50), 'crop':True},
+    },
+# 'accounts': {
+    #     'xs': {'size': (30, 30), 'crop': True},
+    #     'xs_nocorp': {'size': (30, 30), 'crop': False},
+    # },
+}
+
+#单位：px
+THUMB_SIZE = 70
+if not os.path.exists(MEDIA_ROOT):
+    os.mkdir(MEDIA_ROOT)
+#修改上传文件大小（Default:2621440(i.e.2.5 MB).）
+DATA_UPLOAD_MAX_MEMORY_SIZE = 2621440*10

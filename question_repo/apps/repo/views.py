@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.core import serializers
 from django.db import transaction
+from apps.accounts.models import User
 import json
 import logging
 logger = logging.getLogger('repo')
@@ -20,7 +21,17 @@ def test(request):
 #需要用户登录了才能访问该页面，如果没有登录，跳转到 =》 'accounts.login.html'
 @login_required
 def index(request):
-    return render(request, "accounts/index.html")
+    userlog = UserLog.objects.all()[:10]
+    operator = dict(UserLog.OPERATE)
+    for log in userlog:
+        log.operate_cn = operator[int(log.operate)]
+    recent_user_ids = [item['user'] for item in UserLog.objects.filter(operate=3).values('user').distinct()[:10]]
+    recent_user = User.objects.filter(id__in=recent_user_ids)
+    kwgs = {
+        "userlog":userlog,
+        "recent_user":recent_user
+    }
+    return render(request, "index.html", kwgs)
 
 
 class QuestionsList(LoginRequiredMixin,View):
@@ -34,6 +45,21 @@ class QuestionsList(LoginRequiredMixin,View):
                 "search_key":search_key
                 }
         return render(request, 'questions.html', kwgs)
+
+    def post(self, request):
+        print(request.POST)
+        try:
+            title = request.POST.get("title")
+            category = request.POST.get("category")
+            content = request.POST.get("content")
+            if category:
+                Questions.objects.create(title=title, category_id=category, content=content, contributor=request.user)
+            else:
+                Questions.objects.create(title=title, content=content, contributor=request.user)
+        except Exception as ex:
+            logger.error(ex)
+            return HttpResponse("提交失败!")
+        return HttpResponse("提交成功")
 
 class QuestionDetail(LoginRequiredMixin, DetailView):
     model = Questions
@@ -90,3 +116,18 @@ def questions(request):
             }
     return render(request, "questions.html", kwgs)
 
+class Question(LoginRequiredMixin, View):
+    def post(self, request):
+        print(request.POST)
+        try:
+            title = request.POST.get("title")
+            category = request.POST.get("category")
+            content = request.POST.get("content")
+            if category:
+                Questions.objects.create(title=title, category_id=category, content=content, contributor=request.user)
+            else:
+                Questions.objects.create(title=title, content=content, contributor=request.user)
+        except Exception as ex:
+            logger.error(ex)
+            return HttpResponse("提交失败!")
+        return HttpResponse("提交成功")

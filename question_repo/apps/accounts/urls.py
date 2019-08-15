@@ -4,17 +4,17 @@ from . import views
 #CBV => class base view
 #FBV => function base view
 urlpatterns = [
-    #TemplateView¿ÉÒÔ²»Ğ´ÊÓÍ¼º¯Êı
+    #TemplateViewå¯ä»¥ä¸å†™è§†å›¾å‡½æ•°
     # url(r'^register/$', TemplateView.as_view(template_name="accounts/register.html"), name="register"),
-    # ×¢²á
+    # æ³¨å†Œ
     url(r'register/$', views.Register.as_view(), name="register"),
-    # µÇÂ¼
+    # ç™»å½•
     url(r'^login/$', views.Login.as_view(), name='login'),
     # url(r'login/$', views.test, name="login"),
-    # ÍË³ö
+    # é€€å‡º
     url(r'logout/$', views.logout, name="logout"),
-    # Íü¼ÇÃÜÂë
+    # å¿˜è®°å¯†ç 
     url(r'password/forget/$', views.test, name="password_forget"),
-    # ÖØÖÃÃÜÂë
+    # é‡ç½®å¯†ç 
     url(r'password/reset/token/$', views.test, name="password_reset"),
 ]

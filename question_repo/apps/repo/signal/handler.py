@@ -19,6 +19,6 @@ def send_mail(sender, instance, **kwargs):
 @receiver(post_save, sender=UserLog)
 def send_mail(sender, instance, **kwargs):
     print(sender, instance, kwargs)
-    time.sleep(20)
+    # time.sleep(20)
     print("XXX发送的信号")
 

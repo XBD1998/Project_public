@@ -65,6 +65,7 @@ class Questions(models.Model):
         permissions = (
                         ('can_change_question', "可以修改题目信息"),
                        ('can_add_question', "可以添加题目信息"),
+                        ('can_change_question_status',"可以修改题目状态")
                        )
 
     def __str__(self):

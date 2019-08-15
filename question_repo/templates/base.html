@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load thumbnail %}
 <!DOCTYPE html>
 <html style="overflow: hidden;" lang="en">
 <head>
@@ -43,12 +44,12 @@
                   <!-- Collect the nav links, forms, and other content for toggling -->
                   <ul class="nav navbar-nav">
                     <li class="active">
-                      <a class="" href="http://127.0.0.1:8000/">
+                      <a class="" href="{% url 'repo:index' %}">
                           <span> 首页 </span>
                       </a>
                     </li>
                     <li class="">
-                        <a class="" href="http://127.0.0.1:8000/questions/">
+                        <a class="" href="{% url 'repo:questions' %}">
                       <span> 校招题 </span>
                     </a>
                     </li>
@@ -62,10 +63,9 @@
                       <!-- user login dropdown start-->
 
                       <li class="dropdown">
-                          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                              <img alt="" src="{% static 'img/1534323246.png' %}" height="30px">
-
-                              <span class="username">admin</span>
+                          <a data-toggle="dropdown" class="dropdown-toggle" href="#" >
+                              <img class="avatar" src="{{ user.avator_sor|thumbnail_url:'avatar'}}" alt="图片不存在" height="30px">
+                              <span class="username">{{ user }}</span>
                               <b class="caret"></b>
                           </a>
                           <ul class="dropdown-menu">
@@ -76,6 +76,7 @@
                               <li><a class="" href="http://127.0.0.1:8000/uc/collect/"> 我的收藏 </a></li>
                               <li><a class="" href="#myModal-1" data-toggle="modal"> 贡献题目 </a></li>
                               <li><a class="" href="http://127.0.0.1:8000/uc/contribut/"> 我的贡献 </a></li>
+{#                              <li><a class="" href="http://127.0.0.1:8000/uc/approval/">待审核题目</a></li>#}
                               <li><a class="" href="http://127.0.0.1:8000/accounts/logout/"> 退出 </a></li>
                           </ul>
                       </li>
